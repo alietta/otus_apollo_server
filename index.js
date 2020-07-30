@@ -1,5 +1,4 @@
 const { ApolloServer } = require("apollo-server");
-const axios = require("axios");
 const typeDefs = require("./typedef");
 const resolvers = require("./resolvers");
 
