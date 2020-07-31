@@ -19,6 +19,7 @@ const typeDefs = gql`
     caption: String
     permalink: String
     timestamp: String
+    media_url: String
     id: String
   }
   # (A "Mutation" type will be covered later on.)

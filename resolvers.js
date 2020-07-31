@@ -57,7 +57,7 @@ const resolvers = {
       };
     },
     media: async (_, { token }) => {
-      const url = `https://graph.instagram.com/me/media?fields=caption,permalink,timestamp&access_token=${token}`;
+      const url = `https://graph.instagram.com/me/media?fields=caption,permalink,timestamp,media_url&access_token=${token}`;
       const result = await axios.get(url);
       return result.data.data;
     }
