@@ -56,11 +56,16 @@ const resolvers = {
         mediaCount: result.data.media_count,
       };
     },
-    media: async (_, { token }) => {
-      const url = `https://graph.instagram.com/me/media?fields=caption,permalink,timestamp,media_url&access_token=${token}`;
+    media: async (_, { token, after = "", before = "", limit = 1 }) => {
+      const afterQery = after !== "" ? `&after=${after}` : "";
+      const beforeQery = before !== "" ? `&before=${after}` : "";
+      const url = `https://graph.instagram.com/me/media?fields=caption,permalink,timestamp,media_url&access_token=${token}&limit=${limit}${afterQery}${beforeQery}`;
       const result = await axios.get(url);
-      return result.data.data;
-    }
+      return {
+        posts: result.data.data,
+        cursor: result.data.paging.cursors,
+      };
+    },
   },
 };
 module.exports = resolvers;
